@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View, ScrollView} from 'react-native';
+import {FlatList, Text, View, ScrollView, Image} from 'react-native';
 import PokeCard from '../../components/PokeCard';
+import {PokeHeader} from '../../components/PokeHeader/styles';
+import {PokeImageHeader} from '../../components/PokeImage/styles';
 import {usePoke} from '../../context/PokeDate';
 function Main() {
   const {pokemon} = usePoke();
@@ -13,17 +15,17 @@ function Main() {
   }, [offset, pokemon]);
 
   return (
-    <View style={{flexGrow: 1}}>
-      <ScrollView>
-        <FlatList
-          numColumns={4}
-          keyExtractor={(poke, index) => index.toString()}
-          data={filteredPokemonList}
-          renderItem={({item}) => (
-            <PokeCard style={{flex: 1}} name={item.name} />
-          )}
-        />
-      </ScrollView>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <PokeImageHeader
+        resizeMode={'contain'}
+        source={require('../../image/pokeLogo.png')}
+      />
+      <FlatList
+        numColumns={2}
+        keyExtractor={(poke, index) => index.toString()}
+        data={filteredPokemonList}
+        renderItem={({item}) => <PokeCard name={item.name} />}
+      />
     </View>
   );
 }
