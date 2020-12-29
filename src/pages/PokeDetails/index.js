@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Image, Text, View, StatusBar} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
+import {Text, View, StatusBar, TouchableOpacity} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {PokeContainerDetails} from '../../components/PokeDetails/PokeContainerDetails/styles';
 import {
   PokeContainerID,
@@ -10,7 +10,7 @@ import {
   PokeContainerImage,
   PokeImage,
 } from '../../components/PokeDetails/PokeContainerImage/styles';
-import {PokeDetailsTab} from '../../components/PokeDetails/PokeContainerTabs/styles';
+
 import {
   PokeTypeOneContainer,
   PokeTypeOneText,
@@ -21,11 +21,16 @@ import {PokeName} from '../../components/PokeDetails/PokeName/styles';
 import PokeTabs from '../../components/PokeDetails/PokeTabs';
 import PokeTab from '../../components/PokeDetails/PokeTabs/PokeTab';
 import {usePoke} from '../../context/PokeDate';
+import About from '../../components/PokeDetails/PokeContainerInfosDetails/About';
 
 function PokeDetails({route, navigation}) {
   const {namepok} = route.params;
-  const myRefs = useRef([]);
-  const [tabs] = useState([
+  const {getPokemonByName} = usePoke();
+  const [pokemonData, setPokemonData] = useState({});
+  const [indexref, setIndex] = useState(0);
+  const [favorite, setFavorite] = useState(false);
+
+  const [tabs, setTabs] = useState([
     {
       id: 0,
       name: 'About',
@@ -43,9 +48,14 @@ function PokeDetails({route, navigation}) {
       name: 'Moves',
     },
   ]);
-  const {getPokemonByName} = usePoke();
-  const [pokemonData, setPokemonData] = useState({});
-  const [active, setActive] = useState(false);
+
+  const handleSelected = (ind) => {
+    const newRepositores = tabs.map((pok, index) => {
+      return index === ind ? {...pok, favorite: !pok.favorite} : pok;
+    });
+    setTabs(newRepositores);
+  };
+
   useEffect(() => {
     async function getPokemon() {
       const resp = await getPokemonByName(namepok);
@@ -54,24 +64,14 @@ function PokeDetails({route, navigation}) {
     getPokemon();
   }, [getPokemonByName, namepok]);
 
-  useEffect(() => {
-    StatusBar.setHidden(true);
-    navigation.setOptions({
-      title: null,
-      headerShown: true,
-      headerTransparent: true,
-      cardStyle: {
-        backgroundColor: '#237678',
-      },
-    });
-  }, [navigation]);
   return (
     <View style={{flex: 1}}>
+      <StatusBar hidden />
       {pokemonData ? (
         <View>
           <PokeName>{pokemonData?.data?.name}</PokeName>
           {pokemonData?.data?.types?.length > 1 ? (
-            <>
+            <View>
               <PokeTypeOneContainer>
                 <PokeTypeOneText>
                   {pokemonData?.data?.types[0].type.name}
@@ -82,15 +82,13 @@ function PokeDetails({route, navigation}) {
                   {pokemonData?.data?.types[1]?.type.name}
                 </PokeTypeTwoText>
               </PokeTypeTwoContainer>
-            </>
+            </View>
           ) : (
-            <>
-              <PokeTypeOneContainer>
-                <PokeTypeOneText>
-                  {pokemonData?.data?.types[0].type.name}
-                </PokeTypeOneText>
-              </PokeTypeOneContainer>
-            </>
+            <PokeTypeOneContainer>
+              <PokeTypeOneText>
+                {pokemonData?.data?.types[0].type.name}
+              </PokeTypeOneText>
+            </PokeTypeOneContainer>
           )}
 
           <PokeContainerID>
@@ -107,23 +105,64 @@ function PokeDetails({route, navigation}) {
             />
           </PokeContainerImage>
           <PokeContainerDetails>
+            {(indexref == 0 && favorite == true) || favorite == false ? (
+              <About
+                types={pokemonData?.data?.types[0].type.name}
+                height={pokemonData?.data?.height}
+                weight={pokemonData?.data?.weight}
+                abilities={
+                  pokemonData?.data?.abilities[0].ability.name +
+                  ' | ' +
+                  pokemonData?.data?.abilities[1].ability.name
+                }
+              />
+            ) : (
+              <>
+                <Text>Test</Text>
+              </>
+            )}
             <PokeTabs>
-              {tabs.map((tab) => (
-                <TouchableOpacity
-                  key={tab.id}
-                  onPress={() => {
-                    const stateactivity = active;
-                    setActive(!stateactivity);
-                  }}>
-                  <View ref={(el) => (myRefs.current[tab.id] = el)}>
-                    <PokeTab
-                      ref={(el) => (myRefs.current[tab.id] = el)}
-                      active={active}
-                      title={tab.name}
-                    />
-                  </View>
-                </TouchableOpacity>
-              ))}
+              <FlatList
+                numColumns={6}
+                keyExtractor={(item) => item.id.toString()}
+                data={tabs}
+                renderItem={({item, index}) => {
+                  return (
+                    <View
+                      style={
+                        favorite && index === indexref
+                          ? {
+                              borderColor: '#000',
+                              borderBottomStartRadius: 200,
+                              borderBottomRightRadius: 100,
+                              borderBottomWidth: 5,
+                            }
+                          : !favorite && index == 0
+                          ? {
+                              borderColor: '#000',
+                              borderBottomStartRadius: 200,
+                              borderBottomRightRadius: 100,
+                              borderBottomWidth: 5,
+                            }
+                          : null
+                      }>
+                      <TouchableOpacity
+                        onPress={() => {
+                          let fav = !true;
+                          handleSelected(index);
+                          setIndex(index);
+                          setFavorite(!fav);
+                        }}>
+                        <PokeTab
+                          favorite={favorite}
+                          title={item.name}
+                          index={index}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  );
+                }}
+              />
             </PokeTabs>
           </PokeContainerDetails>
         </View>

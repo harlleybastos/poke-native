@@ -15,7 +15,18 @@ function App() {
         <Stack.Navigator initialRouteName={Main}>
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="PokeCard" component={PokeCard} />
-          <Stack.Screen name="PokeDetails" component={PokeDetails} />
+          <Stack.Screen
+            name="PokeDetails"
+            options={{
+              title: null,
+              headerShown: true,
+              headerTransparent: true,
+              cardStyle: {
+                backgroundColor: '#237678',
+              },
+            }}
+            component={PokeDetails}
+          />
         </Stack.Navigator>
       </PokeDate>
     </NavigationContainer>

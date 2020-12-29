@@ -1,15 +1,16 @@
 import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 
-let {width} = Dimensions.get('window');
+let width = Dimensions.get('window').width;
 
 export const PokeDetailsTab = styled.View`
   top: 50px;
-  height: 50px;
+  height: 60px;
   border-bottom-color: #ddd;
   width: ${width}px;
-  border-bottom-width: 1px;
-  justify-content: space-around;
+  border-bottom-width: 2px;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
+  position: absolute;
 `;

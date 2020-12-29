@@ -9,7 +9,7 @@ function Main({navigation}) {
   const {pokemon} = usePoke();
 
   const [filteredPokemonList, setFilteredPokemonList] = useState([]);
-  const [offset, setOffset] = useState(20);
+  const [offset, setOffset] = useState(100);
 
   useEffect(() => {
     setFilteredPokemonList(pokemon.slice(0, offset));
