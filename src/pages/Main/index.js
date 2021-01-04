@@ -2,14 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View, ScrollView, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import PokeCard from '../../components/PokeCard';
-import {PokeHeader} from '../../components/PokeHeader/styles';
 import {PokeImageHeader} from '../../components/PokeImage/styles';
 import {usePoke} from '../../context/PokeDate';
 function Main({navigation}) {
   const {pokemon} = usePoke();
 
   const [filteredPokemonList, setFilteredPokemonList] = useState([]);
-  const [offset, setOffset] = useState(100);
+  const [offset, setOffset] = useState(20);
 
   useEffect(() => {
     setFilteredPokemonList(pokemon.slice(0, offset));
@@ -25,11 +24,12 @@ function Main({navigation}) {
         numColumns={2}
         keyExtractor={(poke, index) => index.toString()}
         data={filteredPokemonList}
-        renderItem={({item}) => (
+        renderItem={({item, indexd = 1}) => (
           <TouchableOpacity
             onPress={() =>
               navigation.navigate('PokeDetails', {
                 namepok: item.name,
+                id: indexd.toString(),
               })
             }>
             <PokeCard name={item.name} />

@@ -9,5 +9,5 @@ export const PokeContainerDetails = styled.View`
   height: ${height}px;
   width: ${width}px;
   border-radius: 40px;
-  bottom: 75px;
+  bottom: 100px;
 `;

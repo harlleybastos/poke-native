@@ -7,13 +7,16 @@ import React, {
 } from 'react';
 import api from '../services/api';
 import getAllPoke from '../services/getPoke';
+import getEvolution from '../services/getEvolutions';
 const PokeContext = createContext([]);
 
 export default function PokeDate({children}) {
   const [pokemon, setPokemon] = useState([]);
+  const [evolution, setEvolution] = useState([]);
   const pokemonCache = useRef({});
 
   useEffect(() => {
+    getEvolution(setEvolution);
     getAllPoke(setPokemon);
   }, []);
 
@@ -30,7 +33,7 @@ export default function PokeDate({children}) {
   };
 
   return (
-    <PokeContext.Provider value={{pokemon, getPokemonByName}}>
+    <PokeContext.Provider value={{evolution, pokemon, getPokemonByName}}>
       {children}
     </PokeContext.Provider>
   );
@@ -38,6 +41,6 @@ export default function PokeDate({children}) {
 
 export function usePoke() {
   const context = useContext(PokeContext);
-  const {pokemon, getPokemonByName} = context;
-  return {pokemon, getPokemonByName};
+  const {evolution, pokemon, getPokemonByName} = context;
+  return {evolution, pokemon, getPokemonByName};
 }

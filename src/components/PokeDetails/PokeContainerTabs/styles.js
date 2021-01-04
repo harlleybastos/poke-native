@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 let width = Dimensions.get('window').width;
 
 export const PokeDetailsTab = styled.View`
-  top: 50px;
+  top: 40px;
   height: 60px;
   border-bottom-color: #ddd;
   width: ${width}px;

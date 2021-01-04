@@ -13,7 +13,15 @@ function App() {
     <NavigationContainer>
       <PokeDate>
         <Stack.Navigator initialRouteName={Main}>
-          <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen
+            name="Main"
+            options={{
+              title: null,
+              headerShown: true,
+              headerTransparent: true,
+            }}
+            component={Main}
+          />
           <Stack.Screen name="PokeCard" component={PokeCard} />
           <Stack.Screen
             name="PokeDetails"

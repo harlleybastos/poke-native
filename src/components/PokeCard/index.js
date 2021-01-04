@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import {usePoke} from '../../context/PokeDate';
 import {
   PokeImageDiv,
@@ -14,7 +14,7 @@ import {
   PokeNumber,
 } from './styles';
 
-function PokeCard({name, navigation}) {
+function PokeCard({name}) {
   const {getPokemonByName} = usePoke();
   const [pokemonData, setPokemonData] = useState();
 

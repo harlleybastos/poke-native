@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContainerAbout, ContainerText, FirstText, SecondText} from './styles';
+import {ContainerAbout, ContainerText, FirstText, SecondText} from '../styles';
 
 const About = ({types, height, weight, abilities}) => {
   return (
@@ -18,8 +18,8 @@ const About = ({types, height, weight, abilities}) => {
       </ContainerText>
       <ContainerText>
         <FirstText>Habilities</FirstText>
-        <SecondText>{abilities}</SecondText>
       </ContainerText>
+      <SecondText style={{top: 140, left: 10}}>{abilities}</SecondText>
     </ContainerAbout>
   );
 };

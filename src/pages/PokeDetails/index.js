@@ -22,10 +22,14 @@ import PokeTabs from '../../components/PokeDetails/PokeTabs';
 import PokeTab from '../../components/PokeDetails/PokeTabs/PokeTab';
 import {usePoke} from '../../context/PokeDate';
 import About from '../../components/PokeDetails/PokeContainerInfosDetails/About';
+import BaseStats from '../../components/PokeDetails/PokeContainerInfosDetails/BaseStats';
+import getEvolutions from '../../services/getEvolutions';
+import Evolutions from '../../components/PokeDetails/PokeContainerInfosDetails/Evolutions';
 
-function PokeDetails({route, navigation}) {
-  const {namepok} = route.params;
+function PokeDetails({route}) {
+  const {namepok, id} = route.params;
   const {getPokemonByName} = usePoke();
+  const [evolution, setEvolution] = useState();
   const [pokemonData, setPokemonData] = useState({});
   const [indexref, setIndex] = useState(0);
   const [favorite, setFavorite] = useState(false);
@@ -61,12 +65,14 @@ function PokeDetails({route, navigation}) {
       const resp = await getPokemonByName(namepok);
       setPokemonData(resp);
     }
+    getEvolutions(id, setEvolution);
     getPokemon();
-  }, [getPokemonByName, namepok]);
+  }, [getPokemonByName, id, namepok]);
 
   return (
     <View style={{flex: 1}}>
       <StatusBar hidden />
+      {console.warn(evolution)} {/*Continuar DAQUI*/}
       {pokemonData ? (
         <View>
           <PokeName>{pokemonData?.data?.name}</PokeName>
@@ -110,17 +116,21 @@ function PokeDetails({route, navigation}) {
                 types={pokemonData?.data?.types[0].type.name}
                 height={pokemonData?.data?.height}
                 weight={pokemonData?.data?.weight}
-                abilities={
-                  pokemonData?.data?.abilities[0].ability.name +
-                  ' | ' +
-                  pokemonData?.data?.abilities[1].ability.name
-                }
+                abilities={pokemonData?.data?.abilities
+                  .map((item) => item.ability.name)
+                  .join(' | ')}
               />
-            ) : (
-              <>
-                <Text>Test</Text>
-              </>
-            )}
+            ) : indexref == 1 && favorite == true ? (
+              <BaseStats
+                stats={pokemonData?.data?.stats?.map((item) => item)}
+              />
+            ) : indexref == 2 && favorite == true ? (
+              <Evolutions
+                name={pokemonData?.data?.name}
+                nameRef={evolution?.species?.name}
+                comp={evolution}
+              />
+            ) : null}
             <PokeTabs>
               <FlatList
                 numColumns={6}

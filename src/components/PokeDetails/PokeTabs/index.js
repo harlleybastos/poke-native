@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import {PokeDetailsTab} from '../PokeContainerTabs/styles';
 
 const PokeTabs = ({children}) => {
