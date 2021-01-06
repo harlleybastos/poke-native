@@ -1,26 +1,30 @@
 import React from 'react';
-import {ContainerAbout, ContainerText, FirstText, SecondText} from '../styles';
+import * as styles from './styles';
 
 const About = ({types, height, weight, abilities}) => {
   return (
-    <ContainerAbout>
-      <ContainerText>
-        <FirstText>Type</FirstText>
-        <SecondText>{types}</SecondText>
-      </ContainerText>
-      <ContainerText>
-        <FirstText>Height</FirstText>
-        <SecondText style={{textTransform: 'none'}}>{height}cm</SecondText>
-      </ContainerText>
-      <ContainerText>
-        <FirstText>Weight</FirstText>
-        <SecondText>{weight}</SecondText>
-      </ContainerText>
-      <ContainerText>
-        <FirstText>Habilities</FirstText>
-      </ContainerText>
-      <SecondText style={{top: 140, left: 10}}>{abilities}</SecondText>
-    </ContainerAbout>
+    <styles.ContainerAbout>
+      <styles.ContainerText>
+        <styles.FirstText>Type</styles.FirstText>
+        <styles.SecondText>{types}</styles.SecondText>
+      </styles.ContainerText>
+      <styles.ContainerText>
+        <styles.FirstText>Height</styles.FirstText>
+        <styles.SecondText style={{textTransform: 'none'}}>
+          {height}cm
+        </styles.SecondText>
+      </styles.ContainerText>
+      <styles.ContainerText>
+        <styles.FirstText>Weight</styles.FirstText>
+        <styles.SecondText>{weight}</styles.SecondText>
+      </styles.ContainerText>
+      <styles.ContainerText>
+        <styles.FirstText>Habilities</styles.FirstText>
+      </styles.ContainerText>
+      <styles.SecondText style={{top: 140, left: 10}}>
+        {abilities}
+      </styles.SecondText>
+    </styles.ContainerAbout>
   );
 };
 

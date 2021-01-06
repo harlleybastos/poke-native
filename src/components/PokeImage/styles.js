@@ -31,4 +31,5 @@ export const PokeInfo = styled.View`
 
 export const PokeImageHeader = styled.Image`
   width: ${width}px;
+  bottom: 50px;
 `;

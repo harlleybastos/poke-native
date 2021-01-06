@@ -23,13 +23,12 @@ import PokeTab from '../../components/PokeDetails/PokeTabs/PokeTab';
 import {usePoke} from '../../context/PokeDate';
 import About from '../../components/PokeDetails/PokeContainerInfosDetails/About';
 import BaseStats from '../../components/PokeDetails/PokeContainerInfosDetails/BaseStats';
-import getEvolutions from '../../services/getEvolutions';
 import Evolutions from '../../components/PokeDetails/PokeContainerInfosDetails/Evolutions';
+import Description from '../../components/PokeDetails/PokeContainerInfosDetails/Description';
 
 function PokeDetails({route}) {
   const {namepok, id} = route.params;
   const {getPokemonByName} = usePoke();
-  const [evolution, setEvolution] = useState();
   const [pokemonData, setPokemonData] = useState({});
   const [indexref, setIndex] = useState(0);
   const [favorite, setFavorite] = useState(false);
@@ -37,19 +36,19 @@ function PokeDetails({route}) {
   const [tabs, setTabs] = useState([
     {
       id: 0,
-      name: 'About',
+      name: 'Description',
     },
     {
       id: 1,
-      name: 'Base Stats',
+      name: 'About',
     },
     {
       id: 2,
-      name: 'Evolution',
+      name: 'Base Stats',
     },
     {
       id: 3,
-      name: 'Moves',
+      name: 'Evolution',
     },
   ]);
 
@@ -65,14 +64,13 @@ function PokeDetails({route}) {
       const resp = await getPokemonByName(namepok);
       setPokemonData(resp);
     }
-    getEvolutions(id, setEvolution);
     getPokemon();
   }, [getPokemonByName, id, namepok]);
 
   return (
     <View style={{flex: 1}}>
+      {console.log(pokemonData)}
       <StatusBar hidden />
-      {console.warn(evolution)} {/*Continuar DAQUI*/}
       {pokemonData ? (
         <View>
           <PokeName>{pokemonData?.data?.name}</PokeName>
@@ -112,6 +110,11 @@ function PokeDetails({route}) {
           </PokeContainerImage>
           <PokeContainerDetails>
             {(indexref == 0 && favorite == true) || favorite == false ? (
+              <Description
+                name={pokemonData?.data?.name}
+                id={pokemonData?.data?.id}
+              />
+            ) : indexref == 1 && favorite == true ? (
               <About
                 types={pokemonData?.data?.types[0].type.name}
                 height={pokemonData?.data?.height}
@@ -120,15 +123,15 @@ function PokeDetails({route}) {
                   .map((item) => item.ability.name)
                   .join(' | ')}
               />
-            ) : indexref == 1 && favorite == true ? (
+            ) : indexref == 2 && favorite == true ? (
               <BaseStats
                 stats={pokemonData?.data?.stats?.map((item) => item)}
               />
-            ) : indexref == 2 && favorite == true ? (
+            ) : indexref == 3 && favorite == true ? (
               <Evolutions
                 name={pokemonData?.data?.name}
-                nameRef={evolution?.species?.name}
-                comp={evolution}
+                id={pokemonData?.data?.id}
+                comp={pokemonData?.data?.id}
               />
             ) : null}
             <PokeTabs>

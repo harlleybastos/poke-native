@@ -1,10 +1,10 @@
-import React, {useRef} from 'react';
-import {Text, View, Dimensions} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 
 const PokeTab = ({title}) => {
   return (
     <View style={{left: 15}}>
-      <Text style={{fontSize: 20, margin: 10}}>{title}</Text>
+      <Text style={{fontSize: 19, margin: 10}}>{title}</Text>
     </View>
   );
 };

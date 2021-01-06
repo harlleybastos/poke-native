@@ -1,38 +1,31 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {ContainerAbout, ContainerText, FirstText, SecondText} from '../styles';
-import {
-  ContainerBaseStats,
-  ContainerTextBaseStats,
-  FirstTextBS,
-  SecondTextBS,
-} from './styles';
+import * as styles from './styles';
 
 const BaseStats = ({stats}) => {
   return (
-    <ContainerBaseStats>
-      <ContainerTextBaseStats>
-        <FirstTextBS>{stats[0].stat.name}</FirstTextBS>
-        <SecondTextBS>{stats[0].base_stat}</SecondTextBS>
-      </ContainerTextBaseStats>
+    <styles.ContainerBaseStats>
+      <styles.ContainerTextBaseStats>
+        <styles.FirstTextBS>{stats[0].stat.name}</styles.FirstTextBS>
+        <styles.SecondTextBS>{stats[0].base_stat}</styles.SecondTextBS>
+      </styles.ContainerTextBaseStats>
 
-      <ContainerTextBaseStats>
-        <FirstTextBS>{stats[1].stat.name}</FirstTextBS>
-        <SecondTextBS>{stats[1].base_stat}</SecondTextBS>
-      </ContainerTextBaseStats>
-      <ContainerTextBaseStats>
-        <FirstTextBS>{stats[2].stat.name}</FirstTextBS>
-        <SecondTextBS>{stats[2].base_stat}</SecondTextBS>
-      </ContainerTextBaseStats>
-      <ContainerTextBaseStats>
-        <FirstTextBS>{stats[3].stat.name}</FirstTextBS>
-        <SecondTextBS>{stats[3].base_stat}</SecondTextBS>
-      </ContainerTextBaseStats>
-      <ContainerTextBaseStats>
-        <FirstTextBS>{stats[4].stat.name}</FirstTextBS>
-        <SecondTextBS>{stats[4].base_stat}</SecondTextBS>
-      </ContainerTextBaseStats>
-    </ContainerBaseStats>
+      <styles.ContainerTextBaseStats>
+        <styles.FirstTextBS>{stats[1].stat.name}</styles.FirstTextBS>
+        <styles.SecondTextBS>{stats[1].base_stat}</styles.SecondTextBS>
+      </styles.ContainerTextBaseStats>
+      <styles.ContainerTextBaseStats>
+        <styles.FirstTextBS>{stats[2].stat.name}</styles.FirstTextBS>
+        <styles.SecondTextBS>{stats[2].base_stat}</styles.SecondTextBS>
+      </styles.ContainerTextBaseStats>
+      <styles.ContainerTextBaseStats>
+        <styles.FirstTextBS>{stats[3].stat.name}</styles.FirstTextBS>
+        <styles.SecondTextBS>{stats[3].base_stat}</styles.SecondTextBS>
+      </styles.ContainerTextBaseStats>
+      <styles.ContainerTextBaseStats>
+        <styles.FirstTextBS>{stats[4].stat.name}</styles.FirstTextBS>
+        <styles.SecondTextBS>{stats[4].base_stat}</styles.SecondTextBS>
+      </styles.ContainerTextBaseStats>
+    </styles.ContainerBaseStats>
   );
 };
 

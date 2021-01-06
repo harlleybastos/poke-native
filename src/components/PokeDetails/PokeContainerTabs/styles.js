@@ -10,7 +10,8 @@ export const PokeDetailsTab = styled.View`
   width: ${width}px;
   border-bottom-width: 2px;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   flex-direction: row;
   position: absolute;
+  right: 15px;
 `;

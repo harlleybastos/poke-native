@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 const ContainerBaseStats = styled.View`
   flex: 1;
   top: 120px;
-  left: 50px;
+  left: 30px;
   align-items: flex-start;
   padding: 15px;
 `;
