@@ -4,8 +4,8 @@ import styled from 'styled-components/native';
 let width = Dimensions.get('window').width;
 
 export const PokeDetailsTab = styled.View`
-  top: 40px;
-  height: 60px;
+  top: 55px;
+  height: 45px;
   border-bottom-color: #ddd;
   width: ${width}px;
   border-bottom-width: 2px;
@@ -13,5 +13,5 @@ export const PokeDetailsTab = styled.View`
   align-content: center;
   flex-direction: row;
   position: absolute;
-  right: 15px;
+  right: 10px;
 `;

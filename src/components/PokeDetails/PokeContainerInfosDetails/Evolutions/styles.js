@@ -1,15 +1,18 @@
 import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 const width = Dimensions.get('screen').width / 2.5;
+const widthOrig = Dimensions.get('window').width;
+const heightOrig = Dimensions.get('window').height;
 const height = Dimensions.get('window').height / 2.5;
-const widthMin = Dimensions.get('screen').width / 3.5;
-const heightMin = Dimensions.get('window').height / 3.5;
+const widthMin = Dimensions.get('screen').width / 3.9;
+const heightMin = Dimensions.get('window').height / 3.9;
+
 const ContainerEvolutions = styled.View`
   flex: 1;
+  width: ${widthOrig}px;
+  left: 50px;
   top: 120px;
-  left: 65px;
-  align-items: flex-start;
-  padding: 10px;
+  justify-content: center;
 `;
 const ContainerEvolutionsTwo = styled.View`
   flex: 1;
@@ -27,20 +30,20 @@ const FirstImagePoke = styled.Image`
   width: ${widthMin}px;
   height: ${heightMin}px;
   bottom: 20px;
-  right: 55px;
+  right: 30px;
 `;
 const SecondImagePoke = styled.Image`
   width: ${widthMin}px;
   height: ${heightMin}px;
   left: 80px;
-  top: 50px;
+  top: 105px;
 `;
 
 const ThirdImagePoke = styled.Image`
   width: ${widthMin}px;
   height: ${heightMin}px;
   left: 200px;
-  bottom: 30px;
+  bottom: 15px;
 `;
 const ContainerTextEvolutions = styled.View`
   align-content: center;
@@ -51,7 +54,7 @@ const FirstTextEV = styled.Text`
   text-transform: uppercase;
   font-size: 20px;
   color: #000;
-  right: 50px;
+  right: 35px;
   font-family: 'Roboto-Medium';
 `;
 
@@ -66,8 +69,8 @@ const OtherFirstTextEV = styled.Text`
 const SecondTextEV = styled.Text`
   font-family: 'Roboto-Medium';
   font-size: 20px;
-  left: 90px;
-  top: 70px;
+  left: 75px;
+  top: 130px;
   color: #000;
   text-transform: uppercase;
 `;

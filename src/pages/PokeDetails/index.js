@@ -1,31 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StatusBar, TouchableOpacity} from 'react-native';
+import {View, StatusBar, TouchableOpacity} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import {PokeContainerDetails} from '../../components/PokeDetails/PokeContainerDetails/styles';
-import {
-  PokeContainerID,
-  PokeID,
-} from '../../components/PokeDetails/PokeContainerId/styles';
-import {
-  PokeContainerImage,
-  PokeImage,
-} from '../../components/PokeDetails/PokeContainerImage/styles';
-
-import {
-  PokeTypeOneContainer,
-  PokeTypeOneText,
-  PokeTypeTwoContainer,
-  PokeTypeTwoText,
-} from '../../components/PokeDetails/PokeContainerType/styles';
-import {PokeName} from '../../components/PokeDetails/PokeName/styles';
-import PokeTabs from '../../components/PokeDetails/PokeTabs';
-import PokeTab from '../../components/PokeDetails/PokeTabs/PokeTab';
-import {usePoke} from '../../context/PokeDate';
-import About from '../../components/PokeDetails/PokeContainerInfosDetails/About';
-import BaseStats from '../../components/PokeDetails/PokeContainerInfosDetails/BaseStats';
-import Evolutions from '../../components/PokeDetails/PokeContainerInfosDetails/Evolutions';
-import Description from '../../components/PokeDetails/PokeContainerInfosDetails/Description';
-
+import {PokeContainerDetails} from '~/components/PokeDetails/PokeContainerDetails/styles';
+import * as PokeContainerID from '~/components/PokeDetails/PokeContainerId/styles';
+import * as PokeContainerIMG from '~/components/PokeDetails/PokeContainerImage/styles';
+import * as PokeType from '~/components/PokeDetails/PokeContainerType/styles';
+import {PokeName} from '~/components/PokeDetails/PokeName/styles';
+import PokeTabs from '~/components/PokeDetails/PokeTabs';
+import PokeTab from '~/components/PokeDetails/PokeTabs/PokeTab';
+import {usePoke} from '~/context/PokeDate';
+import About from '~/components/PokeDetails/PokeContainerInfosDetails/About';
+import BaseStats from '~/components/PokeDetails/PokeContainerInfosDetails/BaseStats';
+import Evolutions from '~/components/PokeDetails/PokeContainerInfosDetails/Evolutions';
+import Description from '~/components/PokeDetails/PokeContainerInfosDetails/Description';
 function PokeDetails({route}) {
   const {namepok, id} = route.params;
   const {getPokemonByName} = usePoke();
@@ -69,45 +56,44 @@ function PokeDetails({route}) {
 
   return (
     <View style={{flex: 1}}>
-      {console.log(pokemonData)}
       <StatusBar hidden />
       {pokemonData ? (
         <View>
           <PokeName>{pokemonData?.data?.name}</PokeName>
           {pokemonData?.data?.types?.length > 1 ? (
             <View>
-              <PokeTypeOneContainer>
-                <PokeTypeOneText>
+              <PokeType.PokeTypeOneContainer>
+                <PokeType.PokeTypeOneText>
                   {pokemonData?.data?.types[0].type.name}
-                </PokeTypeOneText>
-              </PokeTypeOneContainer>
-              <PokeTypeTwoContainer>
-                <PokeTypeTwoText>
+                </PokeType.PokeTypeOneText>
+              </PokeType.PokeTypeOneContainer>
+              <PokeType.PokeTypeTwoContainer>
+                <PokeType.PokeTypeTwoText>
                   {pokemonData?.data?.types[1]?.type.name}
-                </PokeTypeTwoText>
-              </PokeTypeTwoContainer>
+                </PokeType.PokeTypeTwoText>
+              </PokeType.PokeTypeTwoContainer>
             </View>
           ) : (
-            <PokeTypeOneContainer>
-              <PokeTypeOneText>
+            <PokeType.PokeTypeOneContainer>
+              <PokeType.PokeTypeOneText>
                 {pokemonData?.data?.types[0].type.name}
-              </PokeTypeOneText>
-            </PokeTypeOneContainer>
+              </PokeType.PokeTypeOneText>
+            </PokeType.PokeTypeOneContainer>
           )}
 
-          <PokeContainerID>
-            <PokeID>
+          <PokeContainerID.PokeContainerID>
+            <PokeContainerID.PokeID>
               #{pokemonData?.data?.id.toString().padStart(3, '0')}
-            </PokeID>
-          </PokeContainerID>
-          <PokeContainerImage>
-            <PokeImage
+            </PokeContainerID.PokeID>
+          </PokeContainerID.PokeContainerID>
+          <PokeContainerIMG.PokeContainerImage>
+            <PokeContainerIMG.PokeImage
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${pokemonData.data?.id}.png`,
               }}
             />
-          </PokeContainerImage>
+          </PokeContainerIMG.PokeContainerImage>
           <PokeContainerDetails>
             {(indexref == 0 && favorite == true) || favorite == false ? (
               <Description
@@ -146,14 +132,14 @@ function PokeDetails({route}) {
                         favorite && index === indexref
                           ? {
                               borderColor: '#000',
-                              borderBottomStartRadius: 200,
-                              borderBottomRightRadius: 100,
+                              borderBottomStartRadius: 400,
+                              borderBottomLeftRadius: 400,
                               borderBottomWidth: 5,
                             }
                           : !favorite && index == 0
                           ? {
                               borderColor: '#000',
-                              borderBottomStartRadius: 200,
+                              borderBottomStartRadius: 300,
                               borderBottomRightRadius: 100,
                               borderBottomWidth: 5,
                             }
@@ -179,9 +165,7 @@ function PokeDetails({route}) {
             </PokeTabs>
           </PokeContainerDetails>
         </View>
-      ) : (
-        <Text>Loading...</Text>
-      )}
+      ) : null}
     </View>
   );
 }

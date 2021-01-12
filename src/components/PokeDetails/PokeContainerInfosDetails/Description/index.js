@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
-import getEvolutions from '../../../../services/getEvolutions';
-import {ContainerPokeball, PokeballImage} from '../PokeballLoading/styles';
-import * as styles from './styles';
-const Description = ({id, name}) => {
+import {View} from 'react-native';
+import getEvolutions from '~/services/getEvolutions';
+import * as PokeBallLoadingStyles from '~/components/PokeDetails/PokeContainerInfosDetails/PokeballLoading/styles';
+import * as DescriptionStyles from './styles';
+const Description = ({id}) => {
   const [evolution, setEvolution] = useState([]);
 
   useEffect(() => {
@@ -11,18 +11,20 @@ const Description = ({id, name}) => {
   }, [id]);
   return (
     <View>
-      <styles.ContainerDescription>
+      <DescriptionStyles.ContainerDescription>
         {evolution[0]?.description ? (
-          <styles.Description>{evolution[0]?.description}</styles.Description>
+          <DescriptionStyles.Description>
+            {evolution[0]?.description}
+          </DescriptionStyles.Description>
         ) : (
-          <ContainerPokeball>
-            <PokeballImage
+          <PokeBallLoadingStyles.ContainerPokeball>
+            <PokeBallLoadingStyles.PokeballImage
               resizeMode={'contain'}
-              source={require('../../../../image/pokeballgif.gif')}
+              source={require('~/image/pokeballgif.gif')}
             />
-          </ContainerPokeball>
+          </PokeBallLoadingStyles.ContainerPokeball>
         )}
-      </styles.ContainerDescription>
+      </DescriptionStyles.ContainerDescription>
     </View>
   );
 };

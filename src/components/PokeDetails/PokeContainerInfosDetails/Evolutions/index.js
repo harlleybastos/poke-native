@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View} from 'react-native';
-import getEvolutions from '../../../../services/getEvolutions';
-import {ContainerPokeball, PokeballImage} from '../PokeballLoading/styles';
-import * as styles from './styles';
+import {Dimensions, View} from 'react-native';
+import getEvolutions from '~/services/getEvolutions';
+import * as PokeBallLoadingStyles from '~/components/PokeDetails/PokeContainerInfosDetails/PokeballLoading/styles';
+import * as EvolutionStyles from './styles';
+
+const width = Dimensions.get('screen').width;
+
 const Evolutions = ({comp, name, id}) => {
   const [evolution, setEvolution] = useState([]);
 
@@ -14,158 +17,176 @@ const Evolutions = ({comp, name, id}) => {
   }, [id]);
 
   return (
-    <View>
+    <View style={{width: width}}>
       {evo?.evolutionLine.length === 3 &&
       Object.keys(name).length === Object.keys(evo?.evolutionLine[0]).length &&
       evo.evolutionStage === 1 ? (
-        <styles.ContainerEvolutions>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.FirstTextEV>{evo?.evolutionLine[0]}</styles.FirstTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.FirstImagePoke
+        <EvolutionStyles.ContainerEvolutions>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.FirstTextEV>
+                {evo?.evolutionLine[0]}
+              </EvolutionStyles.FirstTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.SecondTextEV>{evo?.evolutionLine[1]}</styles.SecondTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.SecondImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.SecondTextEV>
+                {evo?.evolutionLine[1]}
+              </EvolutionStyles.SecondTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.ThirdTextEV>{evo?.evolutionLine[2]}</styles.ThirdTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.ThirdImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.ThirdTextEV>
+                {evo?.evolutionLine[2]}
+              </EvolutionStyles.ThirdTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-        </styles.ContainerEvolutions>
+          </EvolutionStyles.ContainerEvolutionsDetails>
+        </EvolutionStyles.ContainerEvolutions>
       ) : evo?.evolutionLine.length === 3 &&
         Object.keys(name).length ===
           Object.keys(evo?.evolutionLine[1]).length &&
         evo.evolutionStage === 2 ? (
-        <styles.ContainerEvolutions>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.FirstTextEV>{evo?.evolutionLine[0]}</styles.FirstTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.FirstImagePoke
+        <EvolutionStyles.ContainerEvolutions>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.FirstTextEV>
+                {evo?.evolutionLine[0]}
+              </EvolutionStyles.FirstTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.SecondTextEV>{evo?.evolutionLine[1]}</styles.SecondTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.SecondImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.SecondTextEV>
+                {evo?.evolutionLine[1]}
+              </EvolutionStyles.SecondTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.ThirdTextEV>{evo?.evolutionLine[2]}</styles.ThirdTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.ThirdImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.ThirdTextEV>
+                {evo?.evolutionLine[2]}
+              </EvolutionStyles.ThirdTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-        </styles.ContainerEvolutions>
+          </EvolutionStyles.ContainerEvolutionsDetails>
+        </EvolutionStyles.ContainerEvolutions>
       ) : evo?.evolutionLine.length == 3 &&
         Object.keys(name).length == Object.keys(evo?.evolutionLine[2]).length &&
         evo.evolutionStage === 3 ? (
-        <styles.ContainerEvolutions>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.FirstTextEV>{evo?.evolutionLine[0]}</styles.FirstTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.FirstImagePoke
+        <EvolutionStyles.ContainerEvolutions>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.FirstTextEV>
+                {evo?.evolutionLine[0]}
+              </EvolutionStyles.FirstTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 2)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.SecondTextEV>{evo?.evolutionLine[1]}</styles.SecondTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.SecondImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.SecondTextEV>
+                {evo?.evolutionLine[1]}
+              </EvolutionStyles.SecondTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.ThirdTextEV>{evo?.evolutionLine[2]}</styles.ThirdTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.ThirdImagePoke
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.ThirdTextEV>
+                {evo?.evolutionLine[2]}
+              </EvolutionStyles.ThirdTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-        </styles.ContainerEvolutions>
+          </EvolutionStyles.ContainerEvolutionsDetails>
+        </EvolutionStyles.ContainerEvolutions>
       ) : evo?.evolutionLine.length == 2 ? (
-        <styles.ContainerEvolutionsTwo>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.OtherFirstTextEV>
+        <EvolutionStyles.ContainerEvolutionsTwo>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.OtherFirstTextEV>
                 {evo?.evolutionLine[0]}
-              </styles.OtherFirstTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.OtherFirstImagePoke
+              </EvolutionStyles.OtherFirstTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.OtherFirstImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-          <styles.ContainerEvolutionsDetails>
-            <styles.ContainerTextEvolutions>
-              <styles.OtherSecondTextEV>
+          </EvolutionStyles.ContainerEvolutionsDetails>
+          <EvolutionStyles.ContainerEvolutionsDetails>
+            <EvolutionStyles.ContainerTextEvolutions>
+              <EvolutionStyles.OtherSecondTextEV>
                 {evo?.evolutionLine[1]}
-              </styles.OtherSecondTextEV>
-            </styles.ContainerTextEvolutions>
-            <styles.OtherSecondImagePoke
+              </EvolutionStyles.OtherSecondTextEV>
+            </EvolutionStyles.ContainerTextEvolutions>
+            <EvolutionStyles.OtherSecondImagePoke
               resizeMode={'contain'}
               source={{
                 uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
               }}
             />
-          </styles.ContainerEvolutionsDetails>
-        </styles.ContainerEvolutionsTwo>
+          </EvolutionStyles.ContainerEvolutionsDetails>
+        </EvolutionStyles.ContainerEvolutionsTwo>
       ) : (
-        <ContainerPokeball>
-          <PokeballImage
+        <PokeBallLoadingStyles.ContainerPokeball>
+          <PokeBallLoadingStyles.PokeballImage
             resizeMode={'contain'}
-            source={require('../../../../image/pokeballgif.gif')}
+            source={require('~/image/pokeballgif.gif')}
           />
-        </ContainerPokeball>
+        </PokeBallLoadingStyles.ContainerPokeball>
       )}
     </View>
   );

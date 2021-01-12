@@ -1,7 +1,10 @@
+import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
+const width = Dimensions.get('window').width;
 
 const ContainerBaseStats = styled.View`
   flex: 1;
+  width: ${width}px;
   top: 120px;
   left: 30px;
   align-items: flex-start;

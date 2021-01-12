@@ -6,7 +6,7 @@ const height = Dimensions.get('screen').height;
 
 export const PokeContainerImage = styled.View`
   align-items: center;
-  bottom: 55px;
+  bottom: 70px;
   width: ${width}px;
   height: ${height / 3.5}px;
   justify-content: center;

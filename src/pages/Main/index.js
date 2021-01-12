@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, StatusBar, Button, Text} from 'react-native';
+import {StatusBar} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import PokeCard from '../../components/PokeCard';
-import {PokeImageHeader} from '../../components/PokeImage/styles';
-import {usePoke} from '../../context/PokeDate';
-import {TextInputSearch} from './styles';
+import PokeCard from '~/components/PokeCard';
+import {PokeImageHeader} from '~/components/PokeImage/styles';
+import {usePoke} from '~/context/PokeDate';
+import * as MainStyles from './styles';
 function Main() {
   const {pokemon} = usePoke();
   const nav = useNavigation();
@@ -22,51 +21,49 @@ function Main() {
   const handleSearch = () => {
     if (inputValue) {
       const filteredListPok = pokemon.filter((pokemon) => {
-        return pokemon.name.includes(inputValue);
+        return pokemon.name.includes(inputValue.toLowerCase());
       });
       setFilteredPokemonList(filteredListPok);
     }
   };
 
   const loadMore = () => {
-    setOffset((oldOffset) => oldOffset + 20);
+    inputValue.length == 0 ? setOffset((oldOffset) => oldOffset + 20) : null;
+  };
+
+  const clearInput = () => {
+    setInputValue('');
+    setFilteredPokemonList(pokemon.slice(0, offset));
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
+    <MainStyles.ContainerMain>
       <StatusBar hidden />
-      <PokeImageHeader
-        resizeMode={'contain'}
-        source={require('../../image/pokeLogo.png')}
-      />
-      {/* <View style={{alignItems: 'center', bottom: 90}}>
-        <TextInputSearch
-          onChangeText={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-          placeholder={'Search a pokemon...'}
+      <MainStyles.ContainerHeader>
+        <PokeImageHeader
+          resizeMode={'contain'}
+          source={require('~/image/pokeLogo.png')}
         />
-        <TouchableOpacity
-          onPress={() => handleSearch}
-          style={{
-            top: 15,
-            padding: 10,
-            height: 50,
-            width: 200,
-            backgroundColor: 'rgba(10, 50, 0, 0.2)',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              fontFamily: 'Roboto-Medium',
-              textTransform: 'uppercase',
-              fontSize: 25,
-            }}>
-            Search
-          </Text>
-        </TouchableOpacity>
-      </View> */}
-      <FlatList
-        style={{bottom: 60}}
+      </MainStyles.ContainerHeader>
+      <MainStyles.ContainerSearch>
+        <MainStyles.ContainerSearchBar>
+          <MainStyles.TextInputSearch
+            onChangeText={(e) => setInputValue(e)}
+            placeholder={'Search a pokemon...'}
+            value={inputValue}
+          />
+        </MainStyles.ContainerSearchBar>
+
+        <MainStyles.ContainerButtonsSC>
+          <MainStyles.TouchButtonSearch onPress={handleSearch}>
+            <MainStyles.TextButtonSearch>Search</MainStyles.TextButtonSearch>
+          </MainStyles.TouchButtonSearch>
+
+          <MainStyles.TouchButtonClear onPress={clearInput}>
+            <MainStyles.TextButtonClear>Clear</MainStyles.TextButtonClear>
+          </MainStyles.TouchButtonClear>
+        </MainStyles.ContainerButtonsSC>
+      </MainStyles.ContainerSearch>
+      <MainStyles.ListOfPokemons
         numColumns={2}
         keyExtractor={(poke, index) => index.toString()}
         data={filteredPokemonList}
@@ -82,8 +79,9 @@ function Main() {
           </TouchableOpacity>
         )}
         onEndReached={loadMore}
+        onEndReachedThreshold={0.1}
       />
-    </View>
+    </MainStyles.ContainerMain>
   );
 }
 

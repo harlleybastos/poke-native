@@ -1,30 +1,30 @@
 import React from 'react';
-import * as styles from './styles';
+import * as AboutStyles from './styles';
 
 const About = ({types, height, weight, abilities}) => {
   return (
-    <styles.ContainerAbout>
-      <styles.ContainerText>
-        <styles.FirstText>Type</styles.FirstText>
-        <styles.SecondText>{types}</styles.SecondText>
-      </styles.ContainerText>
-      <styles.ContainerText>
-        <styles.FirstText>Height</styles.FirstText>
-        <styles.SecondText style={{textTransform: 'none'}}>
+    <AboutStyles.ContainerAbout>
+      <AboutStyles.ContainerText>
+        <AboutStyles.FirstText>Type</AboutStyles.FirstText>
+        <AboutStyles.SecondText>{types}</AboutStyles.SecondText>
+      </AboutStyles.ContainerText>
+      <AboutStyles.ContainerText>
+        <AboutStyles.FirstText>Height</AboutStyles.FirstText>
+        <AboutStyles.SecondText style={{textTransform: 'none'}}>
           {height}cm
-        </styles.SecondText>
-      </styles.ContainerText>
-      <styles.ContainerText>
-        <styles.FirstText>Weight</styles.FirstText>
-        <styles.SecondText>{weight}</styles.SecondText>
-      </styles.ContainerText>
-      <styles.ContainerText>
-        <styles.FirstText>Habilities</styles.FirstText>
-      </styles.ContainerText>
-      <styles.SecondText style={{top: 140, left: 10}}>
+        </AboutStyles.SecondText>
+      </AboutStyles.ContainerText>
+      <AboutStyles.ContainerText>
+        <AboutStyles.FirstText>Weight</AboutStyles.FirstText>
+        <AboutStyles.SecondText>{weight}</AboutStyles.SecondText>
+      </AboutStyles.ContainerText>
+      <AboutStyles.ContainerText>
+        <AboutStyles.FirstText>Habilities</AboutStyles.FirstText>
+      </AboutStyles.ContainerText>
+      <AboutStyles.SecondText style={{top: 140, left: 10}}>
         {abilities}
-      </styles.SecondText>
-    </styles.ContainerAbout>
+      </AboutStyles.SecondText>
+    </AboutStyles.ContainerAbout>
   );
 };
 
