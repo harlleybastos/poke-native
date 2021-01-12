@@ -3,27 +3,9 @@ import styled from 'styled-components/native';
 const width = Dimensions.get('window').width / 2.2;
 const height = Dimensions.get('window').height / 3;
 
-const colors = {
-  fire: '#FDDFDF',
-  grass: '#DEFDE0',
-  electric: '#FCF7DE',
-  water: '#DEF3FD',
-  ground: '#F4E7DA',
-  rock: '#D5D5D4',
-  fairy: '#FCEAFF',
-  poison: '#98D7A5',
-  bug: '#F8D5A3',
-  dragon: '#97B3E6',
-  psyhic: '#EAEDA1',
-  flying: '#F5F5F5',
-  fighting: '#E6E0D4',
-  normal: '#F5F5F5',
-};
-
 const PokeContainer = styled.View`
   width: ${width}px;
   height: ${height}px;
-  background-color: #116f6a;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -35,19 +17,20 @@ const PokeName = styled.Text`
   text-align: center;
   font-size: 25px;
   bottom: 200px;
+  color: #fff;
   text-transform: capitalize;
 `;
 
 const PokeNameSingle = styled.Text`
   font-family: 'Roboto-Medium';
   text-align: center;
+  color: #fff;
   font-size: 25px;
   bottom: 180px;
   text-transform: capitalize;
 `;
 
 const PokeContainerTypeOne = styled.View`
-  background-color: #bd4242;
   bottom: 65%;
   width: 50px;
   height: 50px;
@@ -100,6 +83,7 @@ const PokeNumber = styled.Text`
   bottom: 70px;
   margin-left: 5px;
   font-size: 24px;
+  color: #fff;
 `;
 
 const PokeNumberSingle = styled.Text`
@@ -110,6 +94,7 @@ const PokeNumberSingle = styled.Text`
   bottom: 50px;
   right: 10px;
   font-size: 25px;
+  color: #fff;
 `;
 export {
   PokeNumberSingle,
@@ -122,5 +107,4 @@ export {
   PokeContainer,
   PokeContainerTypeOneSingle,
   PokeNameSingle,
-  colors,
 };

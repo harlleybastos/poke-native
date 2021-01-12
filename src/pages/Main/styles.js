@@ -26,13 +26,12 @@ const ContainerSearch = styled.View`
 
 const PokeBallLoading = styled.Image`
   width: ${width / 2}px;
-  margin: 0;
-  align-items: center;
 `;
 
 const ContainerPokeballLoading = styled.View`
-  width: ${width}px;
-  bottom: 100px;
+  width: ${width / 3}px;
+  align-items: flex-start;
+  bottom: 250px;
 `;
 
 const ContainerSearchBar = styled.View`

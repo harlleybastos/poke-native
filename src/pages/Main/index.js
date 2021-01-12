@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import PokeCard from '~/components/PokeCard';
 import {PokeImageHeader} from '~/components/PokeImage/styles';
 import {usePoke} from '~/context/PokeDate';
@@ -68,7 +68,7 @@ function Main() {
         keyExtractor={(poke, index) => index.toString()}
         data={filteredPokemonList}
         renderItem={({item}) => (
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={() =>
               nav.navigate('PokeDetails', {
                 namepok: item.name,
@@ -76,7 +76,7 @@ function Main() {
               })
             }>
             <PokeCard name={item.name} />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         )}
         onEndReached={loadMore}
         onEndReachedThreshold={0.1}
