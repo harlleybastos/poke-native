@@ -1,14 +1,16 @@
 import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 let height = Dimensions.get('window').height;
 let width = Dimensions.get('screen').width;
+let widthWD = Dimensions.get('window').width;
 
 const ContainerButtonsSC = styled.View`
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 20px;
-  bottom: 20px;
+  padding: 15px;
+  bottom: 30px;
 `;
 const ContainerHeader = styled.View`
   margin: 15px;
@@ -33,6 +35,30 @@ const ContainerPokeballLoading = styled.View`
   align-items: flex-start;
   bottom: 250px;
 `;
+const ContainerPokeballError = styled.View`
+  width: ${widthWD}px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  bottom: 190px;
+`;
+
+const TextErrorSearch = styled.Text`
+  font-family: 'Roboto-Medium';
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: absolute;
+  top: 80px;
+`;
+const TextErrorSearchTwo = styled.Text`
+  font-family: 'Roboto-Medium';
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: absolute;
+  top: 120px;
+`;
 
 const ContainerSearchBar = styled.View`
   width: ${width}px;
@@ -47,7 +73,9 @@ const ListOfPokemons = styled.FlatList`
 `;
 const TouchButtonSearch = styled.TouchableOpacity`
   padding: 10px;
-  top: -60px;
+  border-radius: 10px;
+  z-index: 3;
+  bottom: 50px;
   width: 150px;
   background-color: rgba(10, 50, 0, 0.2);
   align-items: center;
@@ -55,9 +83,11 @@ const TouchButtonSearch = styled.TouchableOpacity`
 `;
 
 const TouchButtonClear = styled.TouchableOpacity`
+  z-index: 3;
   padding: 10px;
+  border-radius: 10px;
   width: 150px;
-  top: -60px;
+  bottom: 50px;
   margin-left: 10px;
   background-color: rgba(10, 50, 0, 0.2);
   align-items: center;
@@ -83,6 +113,9 @@ const TextInputSearch = styled.TextInput`
 `;
 
 export {
+  TextErrorSearchTwo,
+  TextErrorSearch,
+  ContainerPokeballError,
   ContainerHeader,
   ContainerButtonsSC,
   PokeBallLoading,

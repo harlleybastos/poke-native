@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {usePoke} from '../../context/PokeDate';
 import * as MainStyles from '~/pages/Main/styles';
 import PokeCards from './PokeCards';
@@ -19,9 +19,10 @@ function PokeCard({name}) {
   return (
     <View
       style={{
+        flex: 1,
+        margin: 10,
         justifyContent: 'center',
         alignContent: 'center',
-        margin: 10,
       }}>
       {pokemonData ? (
         <PokeCards pokeData={pokemonData} />
