@@ -1,8 +1,8 @@
-<h1 style="text-align:center">
+<h1 align="center" style="text-align:center">
     <img width='300' height ='300' src="./src/image/LOGO.png">
 </h1>
 
-<h1 style="text-align:center">
+<h1 align="center" style="text-align:center">
     <img src="./src/image/gifApp.gif">
 </h1>
 
