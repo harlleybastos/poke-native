@@ -49,12 +49,13 @@ function Main() {
       <MainStyles.ContainerHeader>
         <PokeImageHeader
           resizeMode={'contain'}
-          source={require('~/image/pokeLogo.png')}
+          source={require('~/image/LOGO.png')}
         />
       </MainStyles.ContainerHeader>
       <MainStyles.ContainerSearch>
         <MainStyles.ContainerSearchBar>
           <MainStyles.TextInputSearch
+            keyboardType={'text'}
             onChangeText={(e) => setInputValue(e)}
             placeholder={'Search a pokemon...'}
             value={inputValue}
@@ -72,10 +73,10 @@ function Main() {
         </MainStyles.ContainerButtonsSC>
       </MainStyles.ContainerSearch>
       {value == 0 ? (
-        <View style={{alignItems: 'center', top: 30}}>
+        <View style={{alignItems: 'center', bottom: 130}}>
           <MainStyles.ContainerPokeballError>
             <Image
-              style={{width: 500, height: 300}}
+              style={{width: 300, height: 300}}
               resizeMode={'contain'}
               source={require('../../image/notfoundpokeball.gif')}
             />

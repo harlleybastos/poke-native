@@ -4,16 +4,17 @@ import {Dimensions} from 'react-native';
 const widthDiv = Dimensions.get('window').width / 4;
 const width = Dimensions.get('window').width;
 const heightDiv = Dimensions.get('window').height / 4;
+const height = Dimensions.get('window').height;
 
 const PokeImage = styled.Image`
   width: ${widthDiv}px;
+  top: 10px;
   height: ${heightDiv}px;
 `;
 
 const PokeImageDiv = styled.View`
   width: 85%;
   height: 55%;
-  background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
   top: 25px;
@@ -24,7 +25,6 @@ const PokeImageDiv = styled.View`
 const PokeImageDivSingle = styled.View`
   width: 85%;
   height: 55%;
-  background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
   top: 25px;
@@ -47,7 +47,7 @@ const PokeInfoSingle = styled.View`
   justify-content: center;
   align-items: center;
   width: 100%;
-  top: 30px;
+  top: 10px;
   height: 80%;
   right: 20px;
   margin-right: 20px;
@@ -55,8 +55,9 @@ const PokeInfoSingle = styled.View`
 `;
 
 const PokeImageHeader = styled.Image`
-  width: ${width / 1.1}px;
-  bottom: 40px;
+  width: ${width / 1.6}px;
+  height: ${height / 1.6}px;
+  bottom: 110px;
 `;
 
 export {

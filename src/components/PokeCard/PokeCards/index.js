@@ -1,8 +1,8 @@
 import React from 'react';
 import * as PokeIMGStyles from '~/components/PokeImage/styles';
 import * as PokeInfoAndCont from '~/components/PokeCard/styles.js';
-import {colors} from './styles.js';
-import {View} from 'react-native';
+import {colors, PokeballBehind} from './styles.js';
+import {Image, View} from 'react-native';
 const PokeCards = ({pokeData}) => {
   const types = pokeData?.data?.types.map((item) => item.type.name);
   const main_types = Object.keys(colors);
@@ -22,6 +22,10 @@ const PokeCards = ({pokeData}) => {
         <View>
           <PokeIMGStyles.PokeInfo>
             <PokeIMGStyles.PokeImageDiv>
+              <PokeballBehind
+                resizeMode={'contain'}
+                source={require('~/image/Pokeball.png')}
+              />
               <PokeIMGStyles.PokeImage
                 resizeMode={'contain'}
                 source={{
@@ -53,6 +57,10 @@ const PokeCards = ({pokeData}) => {
         <View>
           <PokeIMGStyles.PokeInfoSingle>
             <PokeIMGStyles.PokeImageDivSingle>
+              <PokeballBehind
+                resizeMode={'contain'}
+                source={require('~/image/Pokeball.png')}
+              />
               <PokeIMGStyles.PokeImage
                 resizeMode={'contain'}
                 source={{

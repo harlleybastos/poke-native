@@ -1,23 +1,57 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import getEvolutions from '~/services/getEvolutions';
 import * as PokeBallLoadingStyles from '~/components/PokeDetails/PokeContainerInfosDetails/PokeballLoading/styles';
 import * as EvolutionStyles from './styles';
+import {usePoke} from '~/context/PokeDate';
 
-const width = Dimensions.get('screen').width;
-
-const Evolutions = ({comp, name, id}) => {
+const Evolutions = ({name, id}) => {
+  const {getPokemonByName} = usePoke();
   const [evolution, setEvolution] = useState([]);
-
+  const [evolutionRefOne, setEvolutionRefOne] = useState([]);
+  const [evolutionRefTwo, setEvolutionRefTwo] = useState([]);
+  const [evolutionRefThree, setEvolutionRefThree] = useState([]);
   let evo = evolution[0]?.family;
-  let keys = Object.keys(evolution);
 
   useEffect(() => {
     getEvolutions(id, setEvolution);
   }, [id]);
 
+  useEffect(() => {
+    async function getPokemon() {
+      const respOne = await getPokemonByName(
+        (evo?.evolutionLine[0]).toLowerCase(),
+      );
+      setEvolutionRefOne(respOne?.data?.id);
+    }
+    getPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [evo?.evolutionLine[0]]);
+
+  useEffect(() => {
+    async function getPokemon() {
+      const respOne = await getPokemonByName(
+        (evo?.evolutionLine[1]).toLowerCase(),
+      );
+      setEvolutionRefTwo(respOne?.data?.id);
+    }
+    getPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [evo?.evolutionLine[1]]);
+
+  useEffect(() => {
+    async function getPokemon() {
+      const respOne = await getPokemonByName(
+        (evo?.evolutionLine[2]).toLowerCase(),
+      );
+      setEvolutionRefThree(respOne?.data?.id);
+    }
+    getPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [evo?.evolutionLine[2]]);
+
   return (
-    <View style={{width: width}}>
+    <EvolutionStyles.ContainerEvolutionsMain>
       {evo?.evolutionLine.length === 3 &&
       Object.keys(name).length === Object.keys(evo?.evolutionLine[0]).length &&
       evo.evolutionStage === 1 ? (
@@ -31,7 +65,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefOne}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -44,7 +78,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefTwo}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -57,7 +91,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefThree}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -76,7 +110,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefOne}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -89,7 +123,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefTwo}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -102,7 +136,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefThree}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -120,7 +154,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.FirstImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 2)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefOne}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -133,7 +167,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.SecondImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefTwo}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -146,7 +180,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.ThirdImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefThree}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -162,7 +196,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.OtherFirstImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id -= 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefOne}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -175,7 +209,7 @@ const Evolutions = ({comp, name, id}) => {
             <EvolutionStyles.OtherSecondImagePoke
               resizeMode={'contain'}
               source={{
-                uri: `https://pokeres.bastionbot.org/images/pokemon/${(id += 1)}.png`,
+                uri: `https://pokeres.bastionbot.org/images/pokemon/${evolutionRefTwo}.png`,
               }}
             />
           </EvolutionStyles.ContainerEvolutionsDetails>
@@ -188,7 +222,7 @@ const Evolutions = ({comp, name, id}) => {
           />
         </PokeBallLoadingStyles.ContainerPokeball>
       )}
-    </View>
+    </EvolutionStyles.ContainerEvolutionsMain>
   );
 };
 

@@ -13,8 +13,11 @@ const ContainerButtonsSC = styled.View`
   bottom: 30px;
 `;
 const ContainerHeader = styled.View`
-  margin: 15px;
+  margin: 20px;
   align-items: center;
+  justify-content: center;
+  right: 10px;
+  padding: 10px;
 `;
 
 const ContainerMain = styled.View`
@@ -23,7 +26,7 @@ const ContainerMain = styled.View`
 `;
 
 const ContainerSearch = styled.View`
-  bottom: 10px;
+  bottom: 150px;
 `;
 
 const PokeBallLoading = styled.Image`
@@ -49,7 +52,7 @@ const TextErrorSearch = styled.Text`
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 80px;
+  top: 55px;
 `;
 const TextErrorSearchTwo = styled.Text`
   font-family: 'Roboto-Medium';
@@ -57,7 +60,7 @@ const TextErrorSearchTwo = styled.Text`
   text-transform: uppercase;
   font-weight: bold;
   position: absolute;
-  top: 120px;
+  top: 100px;
 `;
 
 const ContainerSearchBar = styled.View`
@@ -67,8 +70,8 @@ const ContainerSearchBar = styled.View`
   bottom: 80px;
 `;
 const ListOfPokemons = styled.FlatList`
-  bottom: 100px;
-  margin-bottom: -100px;
+  bottom: 240px;
+  margin-bottom: -300px;
   height: ${height}px;
 `;
 const TouchButtonSearch = styled.TouchableOpacity`

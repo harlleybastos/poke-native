@@ -1,3 +1,5 @@
+import styled from 'styled-components/native';
+
 export const colors = {
   normal: '#A8A878',
   fighting: '#C03028',
@@ -18,3 +20,11 @@ export const colors = {
   dark: '#705848',
   fairy: '#EE99AC',
 };
+
+export const PokeballBehind = styled.Image`
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: -60px;
+  opacity: 0.3;
+`;

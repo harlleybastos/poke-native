@@ -6,7 +6,12 @@ const heightOrig = Dimensions.get('window').height;
 const height = Dimensions.get('window').height / 2.5;
 const widthMin = Dimensions.get('screen').width / 3.9;
 const heightMin = Dimensions.get('window').height / 3.9;
+const widthDf = Dimensions.get('screen').width;
 
+const ContainerEvolutionsMain = styled.View`
+  width: ${widthDf}px;
+  bottom: 10px;
+`;
 const ContainerEvolutions = styled.View`
   flex: 1;
   width: ${widthOrig}px;
@@ -35,14 +40,14 @@ const FirstImagePoke = styled.Image`
 const SecondImagePoke = styled.Image`
   width: ${widthMin}px;
   height: ${heightMin}px;
-  left: 80px;
-  top: 105px;
+  left: 95px;
+  top: 90px;
 `;
 
 const ThirdImagePoke = styled.Image`
   width: ${widthMin}px;
   height: ${heightMin}px;
-  left: 200px;
+  left: 210px;
   bottom: 15px;
 `;
 const ContainerTextEvolutions = styled.View`
@@ -70,7 +75,7 @@ const SecondTextEV = styled.Text`
   font-family: 'Roboto-Medium';
   font-size: 20px;
   left: 75px;
-  top: 130px;
+  top: 115px;
   color: #000;
   text-transform: uppercase;
 `;
@@ -99,12 +104,13 @@ const OtherSecondImagePoke = styled.Image`
 const ThirdTextEV = styled.Text`
   text-transform: uppercase;
   font-size: 20px;
-  margin-left: 200px;
+  margin-left: 210px;
   color: #000;
   font-family: 'Roboto-Medium';
 `;
 
 export {
+  ContainerEvolutionsMain,
   ContainerEvolutionsTwo,
   ThirdImagePoke,
   SecondImagePoke,

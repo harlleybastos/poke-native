@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Image} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {PokeContainerDetails} from '~/components/PokeDetails/PokeContainerDetails/styles';
 import * as PokeContainerID from '~/components/PokeDetails/PokeContainerId/styles';
@@ -51,10 +51,13 @@ const PokeDetailsContent = ({pokemonData}) => {
     <View>
       {pokemonData ? (
         <View style={{backgroundColor: colorCard}}>
+          <PokeContainerIMG.PokeballBehindDetails
+            resizeMode={'contain'}
+            source={require('~/image/Pokeball.png')}
+          />
           <PokeName>{pokemonData?.data?.name}</PokeName>
           {pokemonData?.data?.types?.length > 1 ? (
             <View>
-              {console.log(colorCard)}
               <PokeType.PokeTypeOneContainer>
                 <PokeType.PokeTypeOneText>
                   {pokemonData?.data?.types[0].type.name}
